@@ -20,20 +20,12 @@ from tg_bot.modules.sql.userbroadcast_sql import update_broadcast_user
 
 
 PM_START_TEXT = """
+<b>Hᴇʟʟᴏ {} 👋, ɪᴍ   {}
 
-ഹായ് {}, എന്റെ പേര് {}! ഞാൻ [ഇദ്ദേഹം](tg://user?id={}) നോക്കി നടത്തുന്ന ഒരു അടിപൊളി അഡ്മിൻ ബോട്ടാണ്.
+<blockquote>🤖 I'ᴀᴍ A Gʀᴏᴜᴩ Mᴀɴᴀɢᴇʀ Bᴏᴛ 💥</blockquote>
 
-എന്നെ നിർമ്മിച്ചിരിക്കുന്നത് python3 യിൽ python-telegram-bot ലൈബ്രറി ഉപയോഗിച്ചാണ്. ഞാൻ പൂർണ്ണമായിട്ടും ഓപ്പൺസോഴ്സ്ഡ് ആണ്. എന്റെ കോഡ് നിങ്ങൾക്ക് [ഇവിടെ](https://github.com/jithumon/tgbot) കാണുവാൻ സാധിക്കും.
-
-എന്നെപ്പോലെ ഒരു അഡ്മിൻ ബോട്ടിനെ ഉണ്ടാക്കുവാൻ താഴെ കൊടുത്തിരിക്കുന്ന വീഡിയോ കാണുക.
-
-എന്റെ അപ്ഡേറ്റുകളെക്കുറിച്ചും പ്രവർത്തനത്തെപറ്റിയും അറിയുവാൻ അപ്ഡേറ്റ് ചാനൽ സബ്സ്ക്രൈബ് ചെയ്യുക.
-
-കൂടെ താഴെ കൊടുത്തിരിക്കുന്ന ടെക് ഗെയിമിംഗ് യൂട്യൂബ് ചാനൽ സബ്സ്ക്രൈബ് ചെയ്യാനും മറക്കേണ്ട.
-
-ലഭ്യമായ കമാന്റുകളെപ്പറ്റി അറിയുവാൻ /help അമർത്തുക.
-
-"""
+⚠️ 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗚𝗿𝗼𝘂𝗽 & 𝗖𝗵𝗮𝗻𝗻𝗲𝗹𝘀 𝘁𝗼 𝗞𝗻𝗼𝘄 𝗠𝗼𝗿𝗲 👇
+</b>"""
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
@@ -150,14 +142,12 @@ def start(bot: Bot, update: Update, args: List[str]):
             first_name = update.effective_user.first_name
             user_id = update.effective_user.id
             username = update.effective_user.username
-            update_broadcast_user(user_id, username)
+            ##update_broadcast_user(user_id, username)
             update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
+                PM_START_TEXT.format(first_name, bot.first_name),
 
-                parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="🎉 Add me to your group", url="t.me/{}?startgroup=true".format(bot.username)),  InlineKeyboardButton(text="🤖 Make Own Admin Bot", url="https://youtu.be/W6CLKrehy6w")],
-                     [InlineKeyboardButton(text="👥 Support Group", url="https://t.me/ELSupport"), InlineKeyboardButton(text="🔔 Update Channel", url="https://t.me/ELUpdates")],
-                     [InlineKeyboardButton(text="🎬 Youtube Channel", url="https://www.youtube.com/stealthtechnogaming?sub_confirmation=1"), InlineKeyboardButton(text="🛠 Help", url="https://t.me/{}?start=help".format(bot.username)) ]]))
+                parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(text="♻️ GROUP", url="https://t.me/MovieJunctionGrp"),  InlineKeyboardButton(text="CHANNELS ⛱️", url="https://t.me/Mj_Linkz/1318")]]))
 
     else:
         update.effective_message.reply_text("ചത്തിട്ടില്ലാ...")
