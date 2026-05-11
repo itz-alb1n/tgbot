@@ -21,12 +21,9 @@ BACKUP_DIR = "/tmp"
 # ==========================================
 
 
-"""def dump_database():
-
-    ##Creates a fresh PostgreSQL dump and returns file path.
-
+def dump_database():
     timestamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    backup_path = f"{BACKUP_DIR}/db_backup_{timestamp}.sql"
+    backup_path = f"/tmp/db_backup_{timestamp}.sql"
 
     cmd = [
         "pg_dump",
@@ -36,10 +33,10 @@ BACKUP_DIR = "/tmp"
     ]
 
     subprocess.check_call(cmd)
+
     return backup_path
 
 """
-
 def dump_database():
     timestamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     backup_path = f"/tmp/db_backup_{timestamp}.sql"
@@ -57,6 +54,7 @@ def dump_database():
         subprocess.check_call(cmd, stdout=f)
 
     return backup_path
+"""
 
 @run_async
 def dbbackup(bot: Bot, update: Update):
