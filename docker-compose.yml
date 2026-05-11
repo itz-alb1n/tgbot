@@ -1,14 +1,14 @@
-version: "3.8"
-
 services:
   db:
     image: postgres:14
     container_name: tgbot-db
     restart: unless-stopped
+
     environment:
       POSTGRES_DB: tgbot
       POSTGRES_USER: tgbot
       POSTGRES_PASSWORD: oomb
+
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -16,12 +16,19 @@ services:
     build: .
     container_name: legacy-tgbot
     restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+
     depends_on:
       - db
+
     environment:
       DATABASE_URL: postgresql://tgbot:oomb@db:5432/tgbot
 
+      POSTGRES_DB: tgbot
+      POSTGRES_USER: tgbot
+      POSTGRES_PASSWORD: oomb
+
+      DB_HOST: db
+      DB_PORT: 5432
+
 volumes:
-  pgdata:
+     pgdata:
