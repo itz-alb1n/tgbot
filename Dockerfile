@@ -1,15 +1,15 @@
-FROM python:3.6-slim
+FROM python:3.9-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# System deps
+# System
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
-    docker.io \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
